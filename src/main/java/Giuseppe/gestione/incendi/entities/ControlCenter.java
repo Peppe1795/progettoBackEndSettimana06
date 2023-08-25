@@ -17,7 +17,7 @@ public class ControlCenter implements Subject {
 
 	private List<Sonda> sondeList = new ArrayList<>();
 
-	private ControlCenter(List<Sonda> sondeList) {
+	public ControlCenter(List<Sonda> sondeList) {
 		this.id = UUID.randomUUID();
 		this.sondeList = sondeList;
 	}

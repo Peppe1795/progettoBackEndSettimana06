@@ -8,12 +8,14 @@ import lombok.Data;
 @Data
 public class Sonda implements Observer {
 	private UUID id;
+	private String temperatura;
 	private String latitudine;
 	private String longitudine;
 	private Integer livelloFumo = 0;
 
-	private Sonda(String latitudine, String longitudine, Integer livelloFumo) {
+	public Sonda(String temperatura, String latitudine, String longitudine, Integer livelloFumo) {
 		this.id = UUID.randomUUID();
+		this.temperatura = temperatura;
 		this.latitudine = latitudine;
 		this.longitudine = longitudine;
 		this.livelloFumo = livelloFumo;
@@ -23,11 +25,14 @@ public class Sonda implements Observer {
 	public void controlloLivelloFumo() {
 		if (this.livelloFumo >= 5) {
 			String notificationUrl = generateNotificationUrl();
-			System.out.println("ALLARME!!! La sonda n. " + id + " ha registrato un livello di fumo di " + livelloFumo
-					+ ", latitudine: " + latitudine + " longitudine: " + longitudine);
+			System.out.println("ALLARME!!! La sonda n: " + id + " le cui coordinate geografiche sono: latitudine: "
+					+ latitudine + ", longitudine: " + longitudine + ", ha rilevato un livello di fumo= " + livelloFumo
+					+ " e una temperatura di: " + temperatura);
 			System.out.println("\"Il centro di controllo ha mandato L'URL di notifica: " + notificationUrl);
 		} else {
-			System.out.println("Livello di fumo nei limiti!!");
+			System.out.println("La sonda n: " + id + " le cui coordinate geografiche sono: latitudine: " + latitudine
+					+ ", longitudine: " + longitudine + " ha registrato un livello di fumo di: " + livelloFumo
+					+ " e una temperatura di: " + temperatura + " il livello e la temperatura sono nei limiti!!");
 		}
 
 	}
